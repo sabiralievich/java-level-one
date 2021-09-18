@@ -1,2 +1,2 @@
-# course java-level-one
-exercises with geekbrains.ru
+# java-level-one
+Lesson One Home Work

@@ -14,7 +14,7 @@ public class HomeWorkThree {
         for (int j = 0; j < arrayOne.length; j++) {
             System.out.print(arrayOne[j] + " ");
         }
-        System.out.println("\nИнвертированный массив");
+        System.out.println("\nИнвертированный массив:");
         for(int i = 0; i < arrayOne.length; i++) {
 
             if(arrayOne[i] == 0) {
@@ -124,7 +124,7 @@ public class HomeWorkThree {
      */
     public static int[] createArray(int len, int initialValue) {
         int[] array = new int[len];
-        System.out.println("Новый массив размером " + len + " и начальным значением " + initialValue + " :");
+        System.out.println("Новый массив размером " + len + " и начальным значением " + initialValue + ":");
         for (int i = 0; i < array.length; i++) {
             array[i] = initialValue;
             System.out.print(array[i] + " ");

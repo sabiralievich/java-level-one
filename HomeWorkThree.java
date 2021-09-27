@@ -76,11 +76,13 @@ public class HomeWorkThree {
         System.out.println("Задача 5:");
         createArray(5, 0);
 
+
+
         /*
         6. * Задать одномерный массив и найти в нем минимальный и максимальный элементы ;
          */
 
-        int[] minMax = {2, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 2};
+        int[] minMax = {2, 2, 2, 1, 2, 2, 10, 1};
         System.out.println("\nЗадача 6:");
         System.out.println("В массиве");
         int min = minMax[0];
@@ -96,6 +98,13 @@ public class HomeWorkThree {
         }
         System.out.println("\nминимальный элемент равен " + min + ", а максимальный равен " + max);
 
+        //Вызов задачи 7:
+        System.out.println("\nЗадача 7:");
+        System.out.println("Для массива");
+        for (int i = 0; i < minMax.length; i++) {
+            System.out.print(minMax[i] + " ");
+        }
+        System.out.println("\nРезультат проверки равенства левой и правой частей - " + checkBalance(minMax));
     }
 
     /*
@@ -112,13 +121,35 @@ public class HomeWorkThree {
         return array;
     }
 
+    /*
+    7. ** Написать метод, в который передается не пустой одномерный целочисленный массив,
+    метод должен вернуть true, если в массиве есть место, в котором сумма левой и правой части массива равны.
+     */
+
     public static boolean checkBalance(int[] array) {
 
         for (int i = 0; i < array.length; i++) {
+            if(checkLeftSum(array, i) == checkRightSum(array, i)) {
+                return true;
+            }
 
         }
 
         return false;
+    }
+    public static int checkLeftSum (int[] array, int i) {
+        int result = array[i];
+        for (int j = i-1; j == 0; j--) {
+           result = result + array[j];
+        }
+        return result;
+    }
+    public static int checkRightSum (int[] array, int i) {
+        int result = array[i];
+        for (int j = i+1; j < array.length; j++) {
+            result =  result = result + array[j];
+        }
+        return result;
     }
 
 }

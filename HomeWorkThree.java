@@ -112,7 +112,7 @@ public class HomeWorkThree {
         for (int i = 0; i < minMax.length; i++) {
             System.out.print(minMax[i] + " ");
         }
-        shift_array(minMax, -3);
+        shiftArray(minMax, -3);
     }
 
 
@@ -178,7 +178,7 @@ public class HomeWorkThree {
         return x;
     }
 
-    public static void shift_array(int[] array, int n) {
+    public static void shiftArray(int[] array, int n) {
 
         System.out.print("на " + Math.abs(n) + " элементов");
         if (n >= 0)

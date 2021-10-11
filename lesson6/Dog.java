@@ -8,7 +8,7 @@ public class Dog extends Animal {
             animals[animalCounter] = this;
             animalCounter++;
         } else {
-            System.out.println("Maximum " + Animal.animals.length + " animals can run in the race.");
+            System.out.println("Maximum " + animals.length + " animals can run in the race.");
         }
 
     }

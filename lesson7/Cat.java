@@ -16,32 +16,32 @@ public class Cat {
 
 
     public void feedTheCat(Plate plate) throws InterruptedException {
-        System.out.println(Variables.ANSI_RED + name + " is eating now.." + Variables.ANSI_RESET);
-        while (plate.food > 0 && hungry > 0) {
-            Variables.printBySymbol(Variables.ANSI_GREEN + "- Meow, I'm hungry for " + hungry + " points of " + maxHungry + ", let me eat something!\n" + Variables.ANSI_RESET);
+        System.out.println(Variables.printRed(name + " is eating now.."));
+        while (!plate.isEmpty() && hungry > 0) {
+            Variables.printBySymbol(Variables.printGreen("- Meow, I'm hungry for " + hungry + " points of " + maxHungry + ", let me eat something!\n"));
             Thread.sleep(500);
-            Variables.printBySymbol(Variables.ANSI_BLUE + "- But you still have " + plate.food + " fish on your plate!\n" + Variables.ANSI_RESET);
+            Variables.printBySymbol(Variables.printBlue("- But you still have " + plate.getFood() + " fish on your plate!\n"));
             Thread.sleep(500);
-            Variables.printBySymbol(Variables.ANSI_GREEN + "- Okay, chomp, chomp");
+            Variables.printBySymbol(Variables.printGreen("- Okay, chomp, chomp"));
             for (int i = 0; i < 10; i++) {
-                System.out.print(" . ");
+                System.out.print(Variables.printGreen(" . "));
                 Thread.sleep(300);
             }
-            System.out.println(Variables.ANSI_RESET);
+            System.out.println("");
             hungry--;
-            plate.food--;
+            plate.takeFood();
 
         }
         if (hungry == 0) {
-            Variables.printBySymbol(Variables.ANSI_GREEN + "- I'm full now..\n" + Variables.ANSI_RESET);
+            Variables.printBySymbol(Variables.printGreen("- I'm full now..\n"));
            }
-        if (plate.food == 0) {
+        if (plate.isEmpty()) {
 
-                Variables.printBySymbol(Variables.ANSI_GREEN + "- What the hell?!!!\n" + Variables.ANSI_RESET);
+                Variables.printBySymbol(Variables.printGreen("- What the hell?!!!\n"));
                 Thread.sleep(1000);
 
-                Variables.printBySymbol(Variables.ANSI_BLUE + "- You ate all the fish!\n" + Variables.ANSI_RESET);
-                plate.addFood(plate.random.nextInt(plate.maxFood));
+                Variables.printBySymbol(Variables.printBlue("- You ate all the fish!\n"));
+                plate.addFood();
             }
 
 

@@ -9,11 +9,14 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
+  //      System.out.println(toRPN("(2+2)x2"));
+  //      System.out.println(result(toRPN("(2+2)x2")));
         new MainWindow();
+
     }
 
     public static void calculate (String expression) {
-        Double result = result(toRPN(expression));
+        double result = result(toRPN(expression));
         MainWindow.setInputText(String.valueOf(result));
     }
     private static String toRPN(String expression) {
@@ -43,7 +46,7 @@ public class Calculator {
                 output.append(' ');
                 while (getPriority(stack.peek()) != 1) {
                     output.append(stack.pop());
-                    stack.pop();
+
                 }
             }
         }

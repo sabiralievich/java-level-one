@@ -12,9 +12,9 @@ public class Main {
         String[] headerOut = new String[] {"header1", "header2", "header3"};
         int[][] dataOut = new int[][] {{101,200,300}, {400,500,600}, {123,123,123}, {234,234,234}, {345,345,345}, {456,456,456}};
 
-        writeFile(headerOut, dataOut);
+       writeFile(headerOut, dataOut);
 
-     //   readFile();
+       // readFile();
 
     }
 

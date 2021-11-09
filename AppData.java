@@ -1,43 +1,68 @@
 package ru.gb;
 
-import java.io.File;
-import java.io.Serializable;
-import java.util.Arrays;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class AppData implements Serializable {
     private String[] header;
-    private int[][] data;
-
-    public AppData() {
-        System.out.println("New data instance created");
+    private Integer[][] data;
+    private final String DELIMITER = ";";
+    public String[] getHeader() {
+        return header;
     }
 
-    public AppData(String[] header, int[][] rows) {
-        this.header = header;
-        this.data = rows;
+    public Integer[][] getData() {
+        return data;
     }
-    @Override
-    public String toString() {
-        StringBuilder headerString = new StringBuilder();
-        StringBuilder row = new StringBuilder();
-        for(String s : header) {
-            headerString.append(s).append(";");
-        }
-        for (int[] datum : data) {
-            for (int j = 0; j < 3; j++) {
-                row.append(datum[j]).append(";");
+    public void readFromFile(String file) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            ArrayList<Integer[]> dataRows = new ArrayList<>();
+            header = (reader.readLine().split(DELIMITER));
+            String row;
+            while ((row = reader.readLine()) != null) {
+                String[] bufString = row.split(DELIMITER);
+                Integer[] bufInt = new Integer[bufString.length];
+                for (int i = 0; i < bufString.length; i++) {
+                    bufInt[i] = Integer.parseInt(bufString[i]);
+                }
+                dataRows.add(bufInt);
             }
-            row.append("\n");
+            data = dataRows.toArray(new Integer[][]{});
+            System.out.println("Data had been read from the file " + file);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return headerString + "\n" + row;
-
     }
 
-    public void setData() {
+    public void writeToFile(String file) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8));
+            StringBuilder row = new StringBuilder();
+            for (String s : header) {
+                row.append(s);
+                row.append(DELIMITER);
+            }
+            writer.write(row.toString());
+            writer.newLine();
 
+            for (int i = 0; i < data.length; i++) {
+                Integer[] rowInt = data[i];
+                row.delete(0, row.length());
+                for (int j = 0; j < rowInt.length; j++) {
+                    row.append(rowInt[i]);
+                    row.append(DELIMITER);
+                    
+                }
+                writer.write(row.toString());
+                writer.newLine();
+            }
+            writer.flush();
+            writer.close();
+            System.out.println("Data recorded");
+        } catch (IOException e) {
+            e.getStackTrace();
+        }
     }
 
-    public void getData() {
-
-    }
 }
